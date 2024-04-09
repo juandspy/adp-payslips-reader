@@ -7,3 +7,6 @@ for file in payslips/*; do mv "$file" "payslips/$(basename $file | cut -d'_' -f 
 ```
 
 in order to have a folder containing all the payslips you want to analyze.
+
+Run `python all_together.py` in order to join all your payslips in a set of
+CSV files under the `output` folder.
