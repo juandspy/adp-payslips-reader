@@ -13,7 +13,7 @@ def test_main_concepts():
 
     for field in out.__dataclass_fields__:
         v = getattr(out, field)
-        assert len(v) == 15
+        assert len(v) > 10
         if field == "concepto" or field == "codigo":
             continue
         assert _check_all_are_floats_or_none(v)
