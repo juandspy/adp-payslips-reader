@@ -4,10 +4,6 @@ from main import get_main_concepts, get_totales, get_bases
 
 INPUT = "example.pdf"
 
-from main import _get_lines
-for line in _get_lines(INPUT):
-    print(line)
-
 def test_main_concepts():
     out = get_main_concepts(INPUT)
 
