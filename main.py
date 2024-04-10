@@ -1,7 +1,8 @@
 """TODO"""
 
-from typing import Dict, List, Tuple
+from typing import List, Tuple
 from pypdf import PdfReader
+from io import BytesIO
 from dataclasses import dataclass, field
 import os
 import re
@@ -33,8 +34,8 @@ class Bases:
     acu_cotiz_ss: float = None
 
 
-def _get_lines(filepath: str, page: int = 0) -> str:
-    reader = PdfReader(filepath)
+def _get_lines(content: str | BytesIO, page: int = 0) -> str:
+    reader = PdfReader(content)
     page = reader.pages[page]
     return page.extract_text().split("\n")
 

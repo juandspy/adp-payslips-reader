@@ -1,3 +1,5 @@
 pypdf
 pytest
 pandas
+streamlit
+plotly
