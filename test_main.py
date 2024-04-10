@@ -10,7 +10,8 @@ MIN_NUM_OF_CONCEPTS = 8
 PAYSLIPS_FOLDER = "payslips"
 
 @pytest.mark.parametrize("test_input", [
-    (f"{PAYSLIPS_FOLDER}/{x}") for x in os.listdir(PAYSLIPS_FOLDER)])
+    (f"{PAYSLIPS_FOLDER}/{x}") for x in os.listdir(PAYSLIPS_FOLDER)
+    if x.endswith(".pdf")])
 class TestAllFormats:
 
     def test_main_concepts(self, test_input):
