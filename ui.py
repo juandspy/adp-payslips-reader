@@ -9,7 +9,14 @@ from all_together import join
 st.write("# ADP Payslips Reader")
 
 st.write("Convert your payslips into usable CSVs. You can download any table.")
-
+st.write("""
+The file names must have a format `YYYY_MM.pdf`. You can run something
+like:
+```sh
+for file in payslips/*; do mv "$file" "payslips/$(basename $file | cut -d'_' -f 2,3).pdf"; done
+```
+in order to format all the files under the "payslips" folder.
+""")
 uploaded_files = st.file_uploader(
     "Choose one or more payslips (PDF format)", accept_multiple_files=True)
 payslips = []
