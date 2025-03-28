@@ -32,10 +32,17 @@ class TestAllFormats:
 
         for field in out.__dataclass_fields__:
             v = getattr(out, field)
-            assert v > 0
+            if field == "correcciones" and v is None:
+                continue
+            if field == "correcciones": assert v < 0
+            else: assert v > 0
             assert isinstance(v, float)
             assert _check_all_lower_than([v], MAIN_MAXIMUM_VALUE)
-        assert round(out.devengos - out.deducciones, 2) == round(out.liquido_a_recibir, 2)
+        if out.correcciones is not None:
+            assert round(out.devengos - out.deducciones, 2) == round(out.correcciones, 2)
+
+        else:
+            assert round(out.devengos - out.deducciones, 2) == round(out.liquido_a_recibir, 2)
 
 
     def test_all(self, test_input):

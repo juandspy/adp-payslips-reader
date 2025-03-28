@@ -21,6 +21,7 @@ class Totals:
     devengos: float | None = None
     deducciones: float | None = None
     liquido_a_recibir: float | None = None
+    correcciones: float | None = None
 
 @dataclass
 class Bases:
@@ -92,14 +93,24 @@ def get_totales(filepath: str) -> Totals:
 
     for i, line in enumerate(lines):
         if "LIQUIDO A RECIBIR" in line:
-            out.liquido_a_recibir = _parse_float(line.replace("€", "").\
-                replace(",", ".").replace("LIQUIDO A RECIBIR", ""))
             if len(lines[i - 1].strip()) > 0:
                 line_with_totals = lines[i - 1]
             elif len(lines[i - 2].strip()) > 0:
                 line_with_totals = lines[i - 2]
             else:
                 raise IndexError("Couldn't find a line with the totals")
+            if "PENDIENTE DESCONTAR" in "".join(lines):
+                # This happens when the payslip is corrected on the next month.
+                # The relevant number is the "TOTAL LIQUIDO(YA INGRESADO + A RECIBIR)"
+                out.liquido_a_recibir = _parse_float(
+                    lines[i+1].replace("€", "").replace(",", ".").\
+                        replace("TOTAL LIQUIDO(YA INGRESADO + A RECIBIR)", ""))
+                out.correcciones = _parse_float(
+                    lines[i].replace("€", "").replace(",", ".").\
+                        replace("LIQUIDO A RECIBIR", ""))
+            else:
+                out.liquido_a_recibir = _parse_float(line.replace("€", "").\
+                    replace(",", ".").replace("LIQUIDO A RECIBIR", ""))
             break
 
         if "TRANSFERENCIA" in line:
@@ -122,7 +133,15 @@ def get_bases(filepath: str) -> Bases:
         if "TRANSFERENCIA" in line:
             lines_to_parse.append(lines[i-1])
             lines_to_parse.extend(lines[i+2:i+11])
+            break
+        if "PENDIENTE DESCONTAR" in line:
+            # This payslip is corrected in the next month!!
+            # We do the same as if it has "TRANSFERENCIA"
+            lines_to_parse.append(lines[i-1])
+            lines_to_parse.extend(lines[i+2:i+11])
+            break
         if "****" in line:
+            # Old format:
             # The data is in the 5 next non empty lines after the bank account
             # and the line before!
             # The bank account is anonymized using some "*", so this is a dirty
@@ -171,7 +190,7 @@ def _parse_float(s: str, divide_by:int = 1) -> float | None:
 
 if __name__ == "__main__":
     from pprint import pprint as print
-    filepath = os.environ.get("FILE_PATH", "payslips/2022_09.pdf")
+    filepath = os.environ.get("FILE_PATH", "payslips/2024_12.pdf")
     print(get_main_concepts(filepath))
     print(get_totales(filepath))
     print(get_bases(filepath))
