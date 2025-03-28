@@ -4,7 +4,7 @@ import os
 
 from main import get_main_concepts, get_totales, get_bases
 
-MAIN_MAXIMUM_VALUE = 15000
+MAIN_MAXIMUM_VALUE = 25000
 BASES_MAXIMUM_VALUE = 200000
 MIN_NUM_OF_CONCEPTS = 8
 PAYSLIPS_FOLDER = "payslips"
