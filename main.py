@@ -94,7 +94,12 @@ def get_totales(filepath: str) -> Totals:
         if "LIQUIDO A RECIBIR" in line:
             out.liquido_a_recibir = _parse_float(line.replace("€", "").\
                 replace(",", ".").replace("LIQUIDO A RECIBIR", ""))
-            line_with_totals = lines[i - 1]
+            if len(lines[i - 1].strip()) > 0:
+                line_with_totals = lines[i - 1]
+            elif len(lines[i - 2].strip()) > 0:
+                line_with_totals = lines[i - 2]
+            else:
+                raise IndexError("Couldn't find a line with the totals")
             break
 
         if "TRANSFERENCIA" in line:
