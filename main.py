@@ -42,7 +42,7 @@ def _get_lines(content: str | BytesIO, page: int = 0) -> str:
 def get_main_concepts(filepath: str) -> MainConcepts:
     """Get the concepts from the main table."""
 
-    def parse_line(line: str, _format: str = "new") -> Tuple[int, str, float, float, float, float]:
+    def parse_line(line: str, parse_format: str = "new") -> Tuple[int, str, float, float, float, float]:
         code_and_concept = line[:29]
 
         codigo = _parse_int(code_and_concept[:4])
@@ -160,6 +160,9 @@ def _parse_int(s: str) -> int | None:
 
 def _parse_float(s: str, divide_by:int = 1) -> float | None:
     # in the old format there are no decimals, so we need to divide by 100, 1000 or 10000 depending on the column
+    if "," in s:
+        # There are some payslips that even though they use the old format, they have decimals
+        divide_by = 1
     if len(s.strip()) == 0:
         return None
     return round(float(s.replace(",", ".").strip()) / divide_by, 2)
@@ -167,7 +170,8 @@ def _parse_float(s: str, divide_by:int = 1) -> float | None:
 
 
 if __name__ == "__main__":
-    filepath = os.environ.get("FILE_PATH", "payslips/2023_01.pdf")
+    from pprint import pprint as print
+    filepath = os.environ.get("FILE_PATH", "payslips/2022_09.pdf")
     print(get_main_concepts(filepath))
     print(get_totales(filepath))
     print(get_bases(filepath))
