@@ -1,0 +1,35 @@
+code,concept,description,account,ignore,why,warn
+637,SEGURO ME,Seguro médico exento de IRPF,,TRUE,Es la base sobre la que se calcula el impuesto del seguro médico y no aporta nada al libro de cuentas,FALSE
+712,AWARD,Rewards recibidos,,TRUE,Se acumulan en la web de RH y no son un activo que me interese mantener un GNUCash,FALSE
+715,T.RESTAU,"Ticket Restaurante (Edenred), exento de IRPF",Ingresos:Pagas extra:Ticket restaurante,TRUE,,FALSE
+1005,SEGURIDAD SOCIAL,Cotización en Seguridad Social,Gastos:Impuestos:Salario,FALSE,,FALSE
+1008,DESEMPLEO,Cotización en Desempleo,Gastos:Impuestos:Salario,FALSE,,FALSE
+1009,FORMACION PROFES,Cotización en Formación profesional,Gastos:Impuestos:Salario,FALSE,,FALSE
+1077,IMP A CTA AWARD,Impuestos por los Rewards,Gastos:Impuestos:Salario,FALSE,,FALSE
+711,DENTAL IN,Seguro médico dental,,TRUE,,FALSE
+321,SALARIO BASE,Salario bruto,Ingresos:Sueldo,FALSE,,FALSE
+1051,IMP A CUENTA RENTA,Retención IRPF,Gastos:Impuestos:Salario,FALSE,,FALSE
+1075,IMP A CTA SEG.DENTAL,Impuestos sobre el seguro dental,Gastos:Impuestos:Salario,FALSE,,FALSE
+1010,SEG.SOCIAL MEI,Cotización en MEI,Gastos:Impuestos:Salario,FALSE,,FALSE
+716,STOCK PP,Descuento de la empresa en los ESPP,,FALSE,,FALSE
+1085,IMP A CTA STOCK P.P,Impuestos sobre el descuento de los ESPP,Gastos:Impuestos:Salario,FALSE,,FALSE
+1542,ESPP,Ingreso como ESPP,Ingresos:Sueldo,FALSE,Lo relleno a mano cuando lo recibo en Computershare para así poder saber a qué precio se compraron,FALSE
+1012,COTIZACION SOLIDARIA,Base de la Cotización solidaria,Gastos:Impuestos:Salario,FALSE,,FALSE
+1592,LIQUI.NEG.EXP ANTER,Correción sobre la nómina anterior,Ingresos:Sueldo,FALSE,,FALSE
+438,BONUS,Bonus trimestral,Ingresos:Pagas extra:Bonus,FALSE,,FALSE
+413,Q BONUS,Bonus trimestral,Ingresos:Pagas extra:Bonus,FALSE,,FALSE
+1115,SEGUR.SOCIAL SS,Cotización en Seguridad Social,Gastos:Impuestos:Salario,FALSE,,FALSE
+1118,DESEMPLEO  SS,Cotización en Desempleo,Gastos:Impuestos:Salario,FALSE,,FALSE
+1119,FORM. PROFES. SS,Cotización en Formación profesional,Gastos:Impuestos:Salario,FALSE,,FALSE
+1120,SEG.SOCIAL SS MEI,Cotización en MEI,Gastos:Impuestos:Salario,FALSE,,FALSE
+417,REFERRAL FEE,Bonus por referral,Ingresos:Pagas extra:Referral,FALSE,,FALSE
+1122,COTIZAC.SOLIDARIA SS,Cotización solidaria,Gastos:Impuestos:Salario,FALSE,,FALSE
+439,TAXABLE GAIN LOCAL,"Valor total de las RSUs, según el precio en la fecha de vesting",Ingresos:Pagas extra:RSU,FALSE,"Este concepto es un poco lioso ya que incluye lo retenido en impuestos, lo recibido líquido y lo que se queda en Morgan Stanley",FALSE
+1524,STOCK GAIN AN ADVAN.,RSU que se quedan en Morgan Stanley,Ingresos:Pagas extra:RSU,FALSE,,FALSE
+1057,IMP A CTA SEG.MEDICO,Impuestos por el seguro médico,Gastos:Impuestos:Salario,FALSE,,FALSE
+702,IN KIND M,Seguro médico NO exento de IRPF,,TRUE,,FALSE
+5101,PRORRAT.P,Prorrateo de la paga extra,,TRUE,Ocurrió pocas veces y solo tiene importancia a nivel de explicacion de bases,FALSE
+693,LICENCIA SIN SUELDO,Reducción de sueldo por exedencia,Ingresos:Sueldo,FALSE,,FALSE
+1055,IMP A CTA SEG.VIDA,Impuesto sobre el seguro de vida,Gastos:Impuestos:Salario,FALSE,,FALSE
+701,LIFE INS.,Seguro de vida,,TRUE,,FALSE
+1571,LIQ.ING.TRANSFERENC.,Líquido recibido con corrección,,TRUE,Esta será la cantidad que se ingresa en la cuenta del banco,TRUE

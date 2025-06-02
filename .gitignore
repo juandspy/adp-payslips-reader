@@ -1,6 +1,7 @@
 venv
 **/*.pdf
 **/*.csv
+!configuration.csv
 
 .pytest_cache
 __pycache__

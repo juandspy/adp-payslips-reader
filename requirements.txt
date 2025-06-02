@@ -3,3 +3,4 @@ pytest
 pandas
 streamlit
 plotly
+piecash
