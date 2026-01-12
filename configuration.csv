@@ -25,6 +25,7 @@ code,concept,description,account,ignore,why,warn
 417,REFERRAL FEE,Bonus por referral,Ingresos:Pagas extra:Referral,FALSE,,FALSE
 1122,COTIZAC.SOLIDARIA SS,Cotización solidaria,Gastos:Impuestos:Salario,FALSE,,FALSE
 439,TAXABLE GAIN LOCAL,"Valor total de las RSUs, según el precio en la fecha de vesting",Ingresos:Pagas extra:RSU,FALSE,"Este concepto es un poco lioso ya que incluye lo retenido en impuestos, lo recibido líquido y lo que se queda en Morgan Stanley",FALSE
+442,BIK,"Valor total de las RSUs, según el precio en la fecha de vesting",Ingresos:Pagas extra:RSU,FALSE,"Este concepto es un poco lioso ya que incluye lo retenido en impuestos, lo recibido líquido y lo que se queda en Morgan Stanley",FALSE
 1524,STOCK GAIN AN ADVAN.,RSU que se quedan en Morgan Stanley,Ingresos:Pagas extra:RSU,FALSE,,FALSE
 1057,IMP A CTA SEG.MEDICO,Impuestos por el seguro médico,Gastos:Impuestos:Salario,FALSE,,FALSE
 702,IN KIND M,Seguro médico NO exento de IRPF,,TRUE,,FALSE
