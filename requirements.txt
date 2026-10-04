@@ -1,4 +1,4 @@
-pypdf
+pypdf>=6.19.0
 pytest
 pandas
 streamlit

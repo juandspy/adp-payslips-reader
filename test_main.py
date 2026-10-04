@@ -2,12 +2,23 @@
 import pytest
 import os
 
-from main import get_main_concepts, get_totales, get_bases
+from importlib.metadata import version
+
+from main import MIN_PYPDF_VERSION, get_main_concepts, get_totales, get_bases
 
 MAIN_MAXIMUM_VALUE = 25000
 BASES_MAXIMUM_VALUE = 200000
 MIN_NUM_OF_CONCEPTS = 8
 PAYSLIPS_FOLDER = "payslips"
+
+
+def _pkg_version(s: str) -> tuple[int, ...]:
+    return tuple(int(p) for p in s.split(".")[:3])
+
+
+def test_pypdf_meets_minimum_version():
+    assert _pkg_version(version("pypdf")) >= _pkg_version(MIN_PYPDF_VERSION)
+
 
 @pytest.mark.parametrize("test_input", [
     (f"{PAYSLIPS_FOLDER}/{x}") for x in os.listdir(PAYSLIPS_FOLDER)
@@ -26,6 +37,12 @@ class TestAllFormats:
             assert any([x for x in v if x is not None])
             assert _check_all_lower_than(v, MAIN_MAXIMUM_VALUE)
 
+    def test_salario_base_not_split_into_deducciones(self, test_input):
+        """Last digit of SALARIO BASE must not land in DEDUCCIONES (pypdf column shift)."""
+        out = get_main_concepts(test_input)
+        idx = out.codigo.index(321)
+        assert out.devengos[idx] is not None
+        assert out.deducciones[idx] is None
 
     def test_totales(self, test_input):
         out = get_totales(test_input)

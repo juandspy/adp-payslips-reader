@@ -1,11 +1,15 @@
 """TODO"""
 
 from typing import List, Tuple
+from importlib.metadata import version as _pkg_version
 from pypdf import PdfReader
 from io import BytesIO
 from dataclasses import dataclass, field
 import os
 import re
+
+# pypdf < 6.19.0 emits extra spaces; column slices below assume this layout.
+MIN_PYPDF_VERSION = "6.19.0"
 
 @dataclass
 class MainConcepts:
@@ -35,7 +39,16 @@ class Bases:
     acu_cotiz_ss: float = None
 
 
+def _require_min_pypdf() -> None:
+    current = _pkg_version("pypdf")
+    current_t = tuple(int(p) for p in current.split(".")[:3])
+    min_t = tuple(int(p) for p in MIN_PYPDF_VERSION.split(".")[:3])
+    if current_t < min_t:
+        raise RuntimeError(f"Need pypdf>={MIN_PYPDF_VERSION}, got {current}")
+
+
 def _get_lines(content: str | BytesIO, page: int = 0) -> str:
+    _require_min_pypdf()
     reader = PdfReader(content)
     page = reader.pages[page]
     return page.extract_text().split("\n")
@@ -50,8 +63,11 @@ def get_main_concepts(filepath: str) -> MainConcepts:
         concepto = code_and_concept[4:]
         cantidad_o_base = _parse_float(line[29:40], 1 if parse_format == "new" else 1000)
         precio_uni = _parse_float(line[40:53], 1 if parse_format == "new" else 10000)
-        devengos = _parse_float(line[53:63], 1 if parse_format == "new" else 100)
-        deducciones = _parse_float(line[63:], 1 if parse_format == "new" else 100)
+        # New pypdf extracts drop a leading space in DEVENGOS; old integer layout does not.
+        devengos_end = 64 if parse_format == "new" else 63
+        divide_money = 1 if parse_format == "new" else 100
+        devengos = _parse_float(line[53:devengos_end], divide_money)
+        deducciones = _parse_float(line[devengos_end:], divide_money)
 
         return codigo, concepto, cantidad_o_base, \
             precio_uni, devengos, deducciones

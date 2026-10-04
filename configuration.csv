@@ -29,6 +29,7 @@ code,concept,description,account,ignore,why,warn
 1524,STOCK GAIN AN ADVAN.,RSU que se quedan en Morgan Stanley,Ingresos:Pagas extra:RSU,FALSE,,FALSE
 1057,IMP A CTA SEG.MEDICO,Impuestos por el seguro médico,Gastos:Impuestos:Salario,FALSE,,FALSE
 702,IN KIND M,Seguro médico NO exento de IRPF,,TRUE,,FALSE
+1525,NET DEDUCTION HEALTH,Deducción neta del seguro médico,Gastos:Conjuntos:Seguros:Seguro sanitario,FALSE,Antes estaba cubierto al 100% y ahora es un plan de reembolso que cubre médicos fuera de la red de Cigna,FALSE
 5101,PRORRAT.P,Prorrateo de la paga extra,,TRUE,Ocurrió pocas veces y solo tiene importancia a nivel de explicacion de bases,FALSE
 693,LICENCIA SIN SUELDO,Reducción de sueldo por exedencia,Ingresos:Sueldo,FALSE,,FALSE
 1055,IMP A CTA SEG.VIDA,Impuesto sobre el seguro de vida,Gastos:Impuestos:Salario,FALSE,,FALSE

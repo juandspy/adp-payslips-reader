@@ -73,6 +73,6 @@ if __name__ == "__main__":
 
     main_concepts_df, bases_df, totales_df = join(payslips)
 
-    main_concepts_df.to_csv(f"{OUTPUT_FOLDER}/main_concepts.csv")
-    bases_df.to_csv(f"{OUTPUT_FOLDER}/bases.csv")
-    totales_df.to_csv(f"{OUTPUT_FOLDER}/totales.csv")
+    main_concepts_df.to_csv(f"{OUTPUT_FOLDER}/main_concepts.csv", sep=";", decimal=",")
+    bases_df.to_csv(f"{OUTPUT_FOLDER}/bases.csv", sep=";", decimal=",")
+    totales_df.to_csv(f"{OUTPUT_FOLDER}/totales.csv", sep=";", decimal=",")
